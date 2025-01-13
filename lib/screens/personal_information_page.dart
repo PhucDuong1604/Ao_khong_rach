@@ -65,7 +65,6 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
             ),
             Row(
                mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
               ElevatedButton(
                 onPressed: () {
