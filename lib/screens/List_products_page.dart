@@ -1,3 +1,4 @@
+import 'package:cua_hang_ao_khong_rach/screens/search_product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -65,7 +66,13 @@ class _ListProductsPageState extends State<ListProductsPage> {
               Icons.search,
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ProductSearchScreen(user: widget.user)),
+              );
+            },
           ),
           const SizedBox(
             width: 10,

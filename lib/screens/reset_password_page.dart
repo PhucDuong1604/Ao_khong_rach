@@ -36,12 +36,12 @@ class _ResetPageState extends State<ResetPage> {
   }
 
   Future<void> resetPassword() async {
-    final email = emailController.text.trim();
+    final email = widget.user.Email;
     final currentPassword = currentPasswordController.text.trim();
     final newPassword = passwordController.text.trim();
     final confirmPassword = confirmPasswordController.text.trim();
 
-    if (email.isEmpty || currentPassword.isEmpty || newPassword.isEmpty || confirmPassword.isEmpty) {
+    if ( currentPassword.isEmpty || newPassword.isEmpty || confirmPassword.isEmpty) {
       _showMessage("Please fill in all fields.");
       return;
     }
@@ -57,7 +57,7 @@ class _ResetPageState extends State<ResetPage> {
       final response = await http.post(
      Uri.parse('http://localhost:8888/restful_api_php/api/taikhoan/reset_password.php'), 
         body: jsonEncode({
-          "email": widget.user.Email,
+          "email":email,
           "MatKhau": widget.user.MatKhau, 
           "current_password": currentPassword,
           "new_password": newPassword,
@@ -115,10 +115,7 @@ class _ResetPageState extends State<ResetPage> {
                   "images/logo.png",
                   height: 200,
                 ),
-                 BuildTextField(
-                  textEditingController: emailController,
-                  labelText: "email",
-                ),
+                
                 const SizedBox(height: 10),
                 BuildTextField(
                   textEditingController: currentPasswordController,
