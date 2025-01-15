@@ -21,28 +21,23 @@ class ProductInCart {
     return 'ProductInCart(maSanPham: $maSanPham, tenSanPham: $tenSanPham, gia: $gia, '
         'hinhAnh: $hinhAnh, soLuong: $soLuong, mauSac: $mauSac, kichThuoc: $kichThuoc)';
   }
-  // Tính tổng giá trị sản phẩm trong giỏ hàng
+
   double totalPrice() {
     return soLuong * double.parse(gia);
   }
 
-  // Tăng số lượng sản phẩm
   void increaseQuantity({int amount = 1}) {
     soLuong += amount;
     print(soLuong);
   }
-
-  // Giảm số lượng sản phẩm
   void decreaseQuantity({int amount = 1}) {
     if (soLuong > amount) {
       soLuong -= amount;
     } else {
-      soLuong = 0; // Đảm bảo số lượng không âm
+      soLuong = 0; 
     }
     print(soLuong);
   }
-
-  // Chuyển đổi đối tượng sang JSON
   Map<String, dynamic> toJson() {
     return {
       'maSanPham': maSanPham,
@@ -54,8 +49,6 @@ class ProductInCart {
       'kichThuoc': kichThuoc,
     };
   }
-
-  // Tạo đối tượng từ JSON
   factory ProductInCart.fromJson(Map<String, dynamic> json) {
     return ProductInCart(
       maSanPham: json['maSanPham'],

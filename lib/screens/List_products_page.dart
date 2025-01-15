@@ -127,7 +127,6 @@ class _ListProductsPageState extends State<ListProductsPage> {
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
               return Center(child: Text('No products available.'));
             } else {
-              // Nếu API trả về dữ liệu sản phẩm
               return GridView.count(
                 crossAxisCount: 3,
                 children: List.generate(

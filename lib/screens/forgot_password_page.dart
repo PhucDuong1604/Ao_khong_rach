@@ -100,7 +100,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => ResetPage(user: widget.user,
-                                           //   email: emailController.text,
                                             )));
                               }
                             },

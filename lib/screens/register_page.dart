@@ -35,12 +35,9 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future<void> registerUser() async {
-    // URL API
     const String apiUrl = "http://localhost:8888/restful_api_php/api/khachhang/them.php";
 
-    // Dữ liệu đăng ký
     final Map<String, String> userData = {
-    //  "MaKhachHang": "",
       "HoTen": nameController.text,
       "Email": emailController.text,
       "MatKhau": passwordController.text,
@@ -48,7 +45,6 @@ class _RegisterPageState extends State<RegisterPage> {
       "TrangThai": "HoatDong",
     };
 
-    // Gửi yêu cầu POST
     try {
       final response = await http.post(
         Uri.parse(apiUrl),
@@ -56,20 +52,16 @@ class _RegisterPageState extends State<RegisterPage> {
         body: jsonEncode(userData),
       );
 
-      // Kiểm tra phản hồi
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
 
         if (responseData['success'] == true) {
-          // Hiển thị thông báo thành công
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("Dang ky thanh cong!")),
           );
 
-          // Điều hướng quay lại trang đăng nhập
           Navigator.pop(context);
         } else {
-          // Hiển thị lỗi từ API
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text("Lỗi: ${responseData['message']}")),
           );

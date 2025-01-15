@@ -33,7 +33,6 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
               color: Colors.black,
             ),
             onPressed: () {
-              // Xử lý khi người dùng nhấn vào nút tìm kiếm
             },
           ),
           const SizedBox(
@@ -45,7 +44,6 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
               color: Colors.black,
             ),
             onPressed: () {
-              // Xử lý khi người dùng nhấn vào nút thông báo
             },
           ),
         ],

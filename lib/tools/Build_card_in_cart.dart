@@ -57,7 +57,6 @@ class _BuildCardInCartState extends State<BuildCardInCart> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Hình ảnh sản phẩm
             Image.network(
               widget.product.hinhAnh,
               width: 100,
@@ -83,8 +82,6 @@ class _BuildCardInCartState extends State<BuildCardInCart> {
                     content: widget.product.gia.toString(),
                   ),
                   const SizedBox(height: 10),
-
-                  // Hiển thị số lượng sản phẩm và các nút tăng giảm
                   Row(
                     children: [
                       IconButton(
@@ -104,14 +101,10 @@ class _BuildCardInCartState extends State<BuildCardInCart> {
                       ),
                     ],
                   ),
-
-                  // Hiển thị tổng tiền (Số lượng * Giá)
                   BuildContent(
                     title: "Total Price: ",
                     content: '${widget.product.totalPrice()} VND',
                   ),
-
-                  // Nút xóa sản phẩm
                   IconButton(
                     onPressed: removeProduct,
                     icon: Icon(Icons.delete, color: Colors.red),
