@@ -1,11 +1,11 @@
-import 'dart:convert'; 
+import 'dart:convert';
 import 'package:cua_hang_ao_khong_rach/Objects/User.dart';
 import 'package:cua_hang_ao_khong_rach/tools/Build_textField.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ResetPage extends StatefulWidget {
-  final User user; 
+  final User user;
 
   const ResetPage({super.key, required this.user});
 
@@ -41,7 +41,9 @@ class _ResetPageState extends State<ResetPage> {
     final newPassword = passwordController.text.trim();
     final confirmPassword = confirmPasswordController.text.trim();
 
-    if ( currentPassword.isEmpty || newPassword.isEmpty || confirmPassword.isEmpty) {
+    if (currentPassword.isEmpty ||
+        newPassword.isEmpty ||
+        confirmPassword.isEmpty) {
       _showMessage("Please fill in all fields.");
       return;
     }
@@ -55,22 +57,24 @@ class _ResetPageState extends State<ResetPage> {
 
     try {
       final response = await http.post(
-     Uri.parse('http://localhost:8888/restful_api_php/api/taikhoan/reset_password.php'), 
+        Uri.parse(
+            'http://localhost:8888/restful_api_php/api/taikhoan/reset_password.php'),
         body: jsonEncode({
-          "email":email,
-          "MatKhau": widget.user.MatKhau, 
+          "email": email,
+          "MatKhau": widget.user.MatKhau,
           "current_password": currentPassword,
           "new_password": newPassword,
           "confirmPassword": confirmPassword,
         }),
         headers: {"Content-Type": "application/json"},
       );
-       print('Response body: ${response.body}');  
+      print('Response body: ${response.body}'); // In nội dung phản hồi
+
       final result = jsonDecode(response.body);
 
       if (response.statusCode == 200 && result['success']) {
         _showMessage(result['message']);
-        Navigator.pop(context); 
+        Navigator.pop(context); // Quay lại màn hình trước đó
       } else {
         _showMessage(result['message']);
       }
@@ -82,7 +86,8 @@ class _ResetPageState extends State<ResetPage> {
   }
 
   void _showMessage(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
@@ -113,7 +118,6 @@ class _ResetPageState extends State<ResetPage> {
                   "images/logo.png",
                   height: 200,
                 ),
-                
                 const SizedBox(height: 10),
                 BuildTextField(
                   textEditingController: currentPasswordController,
@@ -176,8 +180,8 @@ class _ResetPageState extends State<ResetPage> {
                               children: [
                                 Text(
                                   "Reset",
-                                  style:
-                                      TextStyle(color: Colors.white, fontSize: 15),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 15),
                                 ),
                                 SizedBox(width: 10),
                                 Icon(Icons.arrow_forward_ios,

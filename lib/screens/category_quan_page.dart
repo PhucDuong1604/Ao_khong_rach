@@ -1,4 +1,4 @@
-import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
+/*import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/screens/search_product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -90,7 +90,7 @@ class _ListProductsPageState extends State<CategoryQuanPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => CartPage(user: widget.user, list: widget.cart.GetList(),)),
+                    builder: (context) => CartPage(user: widget.user,cart: ,)),
               );
             },
           ),
@@ -140,4 +140,4 @@ class _ListProductsPageState extends State<CategoryQuanPage> {
       ),
     );
   }
-}
+}*/

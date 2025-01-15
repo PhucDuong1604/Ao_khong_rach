@@ -1,7 +1,5 @@
 import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/screens/List_products_page.dart';
-import 'package:cua_hang_ao_khong_rach/screens/category_ao_page.dart';
-import 'package:cua_hang_ao_khong_rach/screens/category_quan_page.dart';
 import 'package:cua_hang_ao_khong_rach/screens/personal_information_page.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/User.dart';
 import 'package:flutter/material.dart';
@@ -33,34 +31,11 @@ class _DesignDrawerState extends State<DesignDrawer> {
                           )));
             },
           ),
-            
-          ExpansionTile(
-            leading: Icon(Icons.view_list), 
-            title: Text('Category'), 
-            children: <Widget>[
-              ListTile(
-                leading: Icon(Icons.check_box),
-                title: Text('Áo'),
-                onTap: () {
-                  Navigator.push(
-                   context,
-                     MaterialPageRoute(builder: (context) => CategoryAoPage(user: widget.user, cart:widget.cart,)),
-                );
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.check_box),
-                title: Text('Quần'),
-                onTap: () {
-                 Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => CategoryQuanPage(user: widget.user, cart:widget.cart,)),
-                  );
-                },
-              ),
-            ],
+          ListTile(
+            leading: Icon(Icons.ad_units),
+            title: Text('Category'),
+            onTap: () {},
           ),
-
           ListTile(
             leading: Icon(Icons.person),
             title: Text('Account'),
@@ -125,3 +100,49 @@ class _DesignDrawerState extends State<DesignDrawer> {
     );
   }
 }
+/*ExpansionTile(
+  leading: Icon(Icons.view_list), 
+  title: Text('Tất Cả'), 
+  children: <Widget>[
+    // Mục cho tất cả sản phẩm
+    ListTile(
+      leading: Icon(Icons.check_box),
+      title: Text('Tất Cả'),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AllProductsPage(user: widget.user, cart: widget.cart),
+          ),
+        );
+      },
+    ),
+    // Mục cho Áo
+    ListTile(
+      leading: Icon(Icons.check_box),
+      title: Text('Áo'),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CategoryAoPage(user: widget.user, cart: widget.cart),
+          ),
+        );
+      },
+    ),
+    // Mục cho Quần
+    ListTile(
+      leading: Icon(Icons.check_box),
+      title: Text('Quần'),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CategoryQuanPage(user: widget.user, cart: widget.cart),
+          ),
+        );
+      },
+    ),
+  ],
+),
+*/

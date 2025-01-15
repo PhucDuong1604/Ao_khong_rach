@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 class PersonalInformationPage extends StatefulWidget {
   final User user;
   final Cart cart;
-  const PersonalInformationPage({super.key, required this.user, required this.cart});
+  const PersonalInformationPage(
+      {super.key, required this.user, required this.cart});
   @override
   State<PersonalInformationPage> createState() =>
       _PersonalInformationPageState();
@@ -33,6 +34,7 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
               color: Colors.black,
             ),
             onPressed: () {
+              // Xử lý khi người dùng nhấn vào nút tìm kiếm
             },
           ),
           const SizedBox(
@@ -44,85 +46,84 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
               color: Colors.black,
             ),
             onPressed: () {
+              // Xử lý khi người dùng nhấn vào nút thông báo
             },
           ),
         ],
       ),
-    
       body: Center(
         child: Column(
-          
           children: [
             buildDetailRow('Tên:', '${widget.user.HoTen}'),
             buildDetailRow('Số điện thoại:', '${widget.user.SoDienThoai}'),
             buildDetailRow('Email:', '${widget.user.Email}'),
             buildDetailRow('Password:', '${widget.user.MatKhau}'),
-            buildDetailRow('Địa Chỉ:', '${widget.user.DiaChi}'),
-             Divider(
-              color: Colors.black,  
-              thickness: 2,         
+            Divider(
+              color: Colors.black,
+              thickness: 2,
             ),
             Row(
-               mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ResetPage(
-                                user: widget.user,
-                              )));
-                },
-                style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(160, 35),
-                    backgroundColor: const Color.fromARGB(255, 9, 9, 9),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Reset Password",
-                      style: TextStyle(color: Colors.white, fontSize: 15),
-                    ),
-                  ],
-                )),
-                SizedBox(width: 50,),
-                 ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => EditProfilePage(
-                                user: widget.user,
-                              )));
-                },
-                style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(160, 35),
-                    backgroundColor: const Color.fromARGB(255, 9, 9, 9),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Edit profile",
-                      style: TextStyle(color: Colors.white, fontSize: 15),
-                    ),
-                  ],
-                )),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ResetPage(
+                                    user: widget.user,
+                                  )));
+                    },
+                    style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(160, 35),
+                        backgroundColor: const Color.fromARGB(255, 9, 9, 9),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Reset Password",
+                          style: TextStyle(color: Colors.white, fontSize: 15),
+                        ),
+                      ],
+                    )),
+                SizedBox(
+                  width: 50,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => EditProfilePage(
+                                    user: widget.user,
+                                  )));
+                    },
+                    style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(160, 35),
+                        backgroundColor: const Color.fromARGB(255, 9, 9, 9),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Edit profile",
+                          style: TextStyle(color: Colors.white, fontSize: 15),
+                        ),
+                      ],
+                    )),
               ],
             )
-           
-                
           ],
         ),
       ),
     );
   }
+
   Widget buildDetailRow(String title, String value) {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 5),

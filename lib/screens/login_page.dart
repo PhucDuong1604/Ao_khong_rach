@@ -46,12 +46,13 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     try {
+      // Gửi yêu cầu đến API đăng nhập
       final response = await http.post(
         Uri.parse('http://localhost:8888/restful_api_php/api/taikhoan/login.php'), 
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({"email": email, "password": password}),
       );
-      print('Response body: ${response.body}');  
+      print('Response body: ${response.body}');  // In nội dung phản hồi
       final responseData = jsonDecode(response.body);
 
       setState(() {
@@ -59,12 +60,12 @@ class _LoginPageState extends State<LoginPage> {
       });
 
       if (responseData['success'] == true) {
+        // Đăng nhập thành công
         User user = User(
           HoTen: responseData['data']['HoTen'] ?? "User",
           Email: email,
           SoDienThoai: responseData['data']['SoDienThoai'] ?? "N/A",
           MatKhau: password,
-          DiaChi: responseData['data']['DiaChi']
         );
         Cart cart = Cart(user: user);
         Navigator.push(
@@ -74,6 +75,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         );
       } else {
+        // Đăng nhập thất bại
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(responseData['message'])),
         );
@@ -82,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
        setState(() {
     isLoading = false;
   });
-    print('Lỗi: $e'); 
+    print('Lỗi: $e'); // Ghi lại lỗi để dễ dàng gỡ lỗi
     ScaffoldMessenger.of(context).showSnackBar(
     const SnackBar(content: Text("Có lỗi xảy ra khi đăng nhập.")),
       );
@@ -207,6 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          // Navigate to Sign Up screen
                           Navigator.push(
                               context,
                               MaterialPageRoute(

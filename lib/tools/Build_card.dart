@@ -46,6 +46,9 @@ class _BuildCardState extends State<BuildCard> {
                         content: widget.product.tenSanPham,
                       ),
                       const SizedBox(height: 10),
+                    /*  BuildContent(
+                          title: "Color: ", content: widget.product.mauSac),
+                      const SizedBox(height: 10),*/
                       BuildContent(
                           title: "Price: ", content: widget.product.gia),
                       const SizedBox(height: 10),

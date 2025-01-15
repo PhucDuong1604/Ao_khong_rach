@@ -11,20 +11,24 @@ import 'package:cua_hang_ao_khong_rach/tools/Desgin_Drawer.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/User.dart';
 
 Future<List<Product>> fetchProducts() async {
-  final response = await http.get(Uri.parse('http://localhost:8888/restful_api_php/api/sp/dssp.php'));
+  final response = await http
+      .get(Uri.parse('http://localhost:8888/restful_api_php/api/sp/dssp.php'));
 
   if (response.statusCode == 200) {
     final data = json.decode(response.body);
     List<Product> productList = [];
     for (var item in data['dssanpham']) {
       productList.add(Product(
-        hinhAnh: item['HinhAnh'] ?? '',
-        tenSanPham: item['TenSanPham'] ?? '',
-        gia: item['Gia'] ?? '',
-        kichThuoc: item['KichThuoc'] ?? '',
-        mauSac: item['MauSac'] ?? '',
-        soLuongTon: item['SoLuongTon'], maSanPham: '', moTa: '', danhMuc: '',SoLuong: 0
-      ));
+          hinhAnh: item['HinhAnh'] ?? '',
+          tenSanPham: item['TenSanPham'] ?? '',
+          gia: item['Gia'] ?? '',
+          kichThuoc: item['KichThuoc'] ?? '',
+          mauSac: item['MauSac'] ?? '',
+          soLuongTon: item['SoLuongTon'],
+          maSanPham: '',
+          moTa: '',
+          danhMuc: '',
+          SoLuong: 0));
     }
     return productList;
   } else {
@@ -38,19 +42,16 @@ class ListProductsPage extends StatefulWidget {
   final Cart cart;
   ListProductsPage({super.key, required this.user, required this.cart});
 
-
   @override
   State<ListProductsPage> createState() => _ListProductsPageState();
 }
+
 class _ListProductsPageState extends State<ListProductsPage> {
-  
-  late Future<List<Product>> futureProducts = fetchProducts(); 
-    
+  late Future<List<Product>> futureProducts = fetchProducts();
 
   @override
   void initState() {
     super.initState();
-   
   }
 
   @override
@@ -74,7 +75,10 @@ class _ListProductsPageState extends State<ListProductsPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ProductSearchScreen(user: widget.user, cart: widget.cart,)),
+                    builder: (context) => ProductSearchScreen(
+                          user: widget.user,
+                          cart: widget.cart,
+                        )),
               );
             },
           ),
@@ -90,7 +94,10 @@ class _ListProductsPageState extends State<ListProductsPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => CartPage(user: widget.user, list: widget.cart.GetList(),)),
+                    builder: (context) => CartPage(
+                          user: widget.user,
+                          cart: widget.cart, list: [],
+                        )),
               );
             },
           ),
@@ -127,11 +134,16 @@ class _ListProductsPageState extends State<ListProductsPage> {
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
               return Center(child: Text('No products available.'));
             } else {
+              // Nếu API trả về dữ liệu sản phẩm
               return GridView.count(
                 crossAxisCount: 3,
                 children: List.generate(
                   snapshot.data!.length,
-                  (index) => BuildCard(product: snapshot.data![index], user: widget.user, cart: widget.cart,),
+                  (index) => BuildCard(
+                    product: snapshot.data![index],
+                    user: widget.user,
+                    cart: widget.cart,
+                  ),
                 ),
               );
             }
