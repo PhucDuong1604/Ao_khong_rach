@@ -1,3 +1,4 @@
+import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/screens/search_product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -33,8 +34,10 @@ Future<List<Product>> fetchProducts() async {
 
 // ignore: must_be_immutable
 class ListProductsPage extends StatefulWidget {
-  User user;
-  ListProductsPage({super.key, required this.user});
+  final User user;
+  final Cart cart;
+  ListProductsPage({super.key, required this.user, required this.cart});
+
 
   @override
   State<ListProductsPage> createState() => _ListProductsPageState();
@@ -42,6 +45,7 @@ class ListProductsPage extends StatefulWidget {
 class _ListProductsPageState extends State<ListProductsPage> {
   
   late Future<List<Product>> futureProducts = fetchProducts(); 
+    
 
   @override
   void initState() {
@@ -70,7 +74,7 @@ class _ListProductsPageState extends State<ListProductsPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ProductSearchScreen(user: widget.user)),
+                    builder: (context) => ProductSearchScreen(user: widget.user, cart: widget.cart,)),
               );
             },
           ),
@@ -86,7 +90,7 @@ class _ListProductsPageState extends State<ListProductsPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => CartPage(user: widget.user)),
+                    builder: (context) => CartPage(user: widget.user, list: widget.cart.GetList(),)),
               );
             },
           ),
@@ -104,6 +108,7 @@ class _ListProductsPageState extends State<ListProductsPage> {
       ),
       drawer: DesignDrawer(
         user: widget.user,
+        cart: widget.cart,
       ),
       body: DecoratedBox(
         decoration: const BoxDecoration(
@@ -127,7 +132,7 @@ class _ListProductsPageState extends State<ListProductsPage> {
                 crossAxisCount: 3,
                 children: List.generate(
                   snapshot.data!.length,
-                  (index) => BuildCard(product: snapshot.data![index], user: widget.user),
+                  (index) => BuildCard(product: snapshot.data![index], user: widget.user, cart: widget.cart,),
                 ),
               );
             }

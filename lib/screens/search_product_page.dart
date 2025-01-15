@@ -1,3 +1,4 @@
+import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -35,7 +36,8 @@ Future<List<Product>> fetchProducts(String name) async {
 
 class ProductSearchScreen extends StatefulWidget {
   final User user;
-  ProductSearchScreen({Key? key, required this.user}) : super(key: key);
+  final Cart cart;
+  ProductSearchScreen({super.key, required this.user, required this.cart});
 
   @override
   _ProductSearchScreenState createState() => _ProductSearchScreenState();
@@ -103,6 +105,7 @@ class _ProductSearchScreenState extends State<ProductSearchScreen> {
                         (index) => BuildCard(
                           product: snapshot.data![index],
                           user: widget.user,
+                          cart: widget.cart,
                         ),
                       ),
                     );

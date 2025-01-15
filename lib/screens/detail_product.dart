@@ -179,6 +179,7 @@ class _DetailProductState extends State<DetailProduct> {
   }
 }
 */
+import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/product.dart';
 import 'package:cua_hang_ao_khong_rach/tools/Desgin_Drawer.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/User.dart';
@@ -188,7 +189,8 @@ import 'package:flutter/material.dart';
 class DetailProduct extends StatefulWidget {
   Product product;
   User user;
-  DetailProduct({super.key, required this.product, required this.user});
+  Cart cart;
+  DetailProduct({super.key, required this.product, required this.user, required this.cart});
   @override
   State<DetailProduct> createState() => _DetailProductState();
 }
@@ -203,7 +205,7 @@ class _DetailProductState extends State<DetailProduct> {
     print('Cập nhật sản phẩm với màu: $selectedColor và kích thước: $selectedSize');
     // Thực hiện gửi API với dữ liệu đã chọn ở đây
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -277,7 +279,7 @@ class _DetailProductState extends State<DetailProduct> {
                     BuildContent("Name: ", widget.product.tenSanPham),
                     const SizedBox(height: 10),
                    
-                    BuildContent("Price: ", widget.product.gia ),
+                    BuildContent("Price: ", widget.product.gia as String ),
                     const SizedBox(height: 10),
                   ],
                 ),
@@ -379,7 +381,7 @@ class _DetailProductState extends State<DetailProduct> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10))),
                         onPressed: () {
-                          widget.user.addProduct(widget.product);
+                          widget.cart.addProduct(widget.product);
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,

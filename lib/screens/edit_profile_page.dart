@@ -32,9 +32,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
             width: 100,
           ),
         ),
-        drawer: DesignDrawer(
-          user: widget.user,
-        ),
         body: Container(
           decoration: const BoxDecoration(
             color: Colors.black,

@@ -1,43 +1,46 @@
 
 import 'package:cua_hang_ao_khong_rach/Objects/User.dart';
+import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/product.dart';
+import 'package:cua_hang_ao_khong_rach/Objects/product_incart.dart';
 import 'package:cua_hang_ao_khong_rach/tools/Build_Content.dart';
 import 'package:flutter/material.dart';
 
 class BuildCardInCart extends StatefulWidget {
-  final Product product;
+  final ProductInCart product;
   final User user;
-  const BuildCardInCart({required this.product, super.key, required this.user});
+  final Cart cart;
+  const BuildCardInCart({required this.product, super.key, required this.user, required this.cart});
 
   @override
   State<BuildCardInCart> createState() => _BuildCardInCartState();
 }
 
 class _BuildCardInCartState extends State<BuildCardInCart> {
-  int quantity = 1; 
 
-  void incrementQuantity() {
+  ProductInCart getpro(ProductInCart product){
+    ProductInCart productInCart = new ProductInCart(maSanPham: product.maSanPham, tenSanPham: product.tenSanPham, gia: product.gia, hinhAnh: product.hinhAnh, mauSac: product.mauSac, kichThuoc: product.kichThuoc);
+    return productInCart;
+  }
+
+  void removeProduct() {
+    print('Sản phẩm đã được xóa khỏi giỏ hàng');
+  }
+  int _number = 0;
+  int count = 0;
+
+  void _increase() {
     setState(() {
-      quantity++;
+      widget.product.increaseQuantity();
+      _number = widget.product.soLuong;
     });
   }
 
-  void decrementQuantity() {
-    if (quantity > 1) {
-      setState(() {
-        quantity--;
-      });
-    }
-  }
-
-    String getTotalPrice() {
-    double price = double.tryParse(widget.product.gia.toString()) ?? 0.0; 
-    double total = price * quantity; 
-    return total.toStringAsFixed(2); 
-  }
-  
-  void removeProduct() {
-    print('Sản phẩm đã được xóa khỏi giỏ hàng');
+  void _decrease() {
+    setState(() {
+      widget.product.decreaseQuantity();
+      _number = widget.product.soLuong;
+    });
   }
 
   @override
@@ -85,12 +88,18 @@ class _BuildCardInCartState extends State<BuildCardInCart> {
                   Row(
                     children: [
                       IconButton(
-                        onPressed: decrementQuantity,
+                        onPressed: (){
+                          _decrease();
+                          if(count == 0) count == 1;
+                        },
                         icon: Icon(Icons.remove),
                       ),
-                      Text(quantity.toString(), style: TextStyle(fontSize: 18)),
+                      Text((count == 0 ) ? widget.product.soLuong.toString() : '$_number', style: TextStyle(fontSize: 18)),
                       IconButton(
-                        onPressed: incrementQuantity,
+                        onPressed: (){
+                          _increase();
+                          if(count == 0) count == 1;
+                        },
                         icon: Icon(Icons.add),
                       ),
                     ],
@@ -99,7 +108,7 @@ class _BuildCardInCartState extends State<BuildCardInCart> {
                   // Hiển thị tổng tiền (Số lượng * Giá)
                   BuildContent(
                     title: "Total Price: ",
-                    content: '${getTotalPrice()} VND',
+                    content: '${widget.product.totalPrice()} VND',
                   ),
 
                   // Nút xóa sản phẩm

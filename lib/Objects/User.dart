@@ -17,17 +17,5 @@ class User {
     this.MatKhau,
   });
 
-  void addProduct(Product product) {
-    list ??= List.empty();
-    /*for (int i = 0; i < list!.length; i++) {
-      if(list[i] == product.name) {
-
-      }
-    }*/
-    list?.add(product);
-  }
-
-  List<Product> getList() {
-    return list!;
-  }
+  
 }

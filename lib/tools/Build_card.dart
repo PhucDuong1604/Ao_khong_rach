@@ -1,5 +1,7 @@
 import 'package:cua_hang_ao_khong_rach/Objects/User.dart';
+import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/product.dart';
+import 'package:cua_hang_ao_khong_rach/Objects/product_incart.dart';
 import 'package:cua_hang_ao_khong_rach/screens/detail_product.dart';
 import 'package:cua_hang_ao_khong_rach/tools/Build_Content.dart';
 import 'package:flutter/material.dart';
@@ -7,15 +9,18 @@ import 'package:flutter/material.dart';
 class BuildCard extends StatefulWidget {
   final Product product;
   final User user;
-  const BuildCard({required this.product, super.key, required this.user});
+  final Cart cart;
+  const BuildCard({required this.product, super.key, required this.user, required this.cart});
   @override
   State<BuildCard> createState() => _BuildCardState();
 }
 
 class _BuildCardState extends State<BuildCard> {
+
+    
+    
   @override
   Widget build(BuildContext context) {
-    List<Product> checkCart = widget.user.getList();
     return Padding(
       padding: EdgeInsets.all(10),
       child: Container(
@@ -64,11 +69,7 @@ class _BuildCardState extends State<BuildCard> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10))),
                           onPressed: () {
-                            //----------
-                            widget.user.addProduct(widget.product);
-                            print(widget.product.tenSanPham);
-                            print(checkCart[0].tenSanPham);
-                            //----------
+                            widget.cart.addProduct(widget.product);
                           },
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -105,6 +106,7 @@ class _BuildCardState extends State<BuildCard> {
                                     builder: (context) => DetailProduct(
                                           product: widget.product,
                                           user: widget.user,
+                                          cart: widget.cart,
                                         )));
                           },
                           child: const Row(

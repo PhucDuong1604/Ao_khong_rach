@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class Product {
   final String maSanPham;
   final String tenSanPham;

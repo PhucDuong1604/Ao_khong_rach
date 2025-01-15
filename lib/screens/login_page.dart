@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/product.dart';
 import 'package:cua_hang_ao_khong_rach/screens/List_products_page.dart';
 import 'package:cua_hang_ao_khong_rach/screens/forgot_password_page.dart';
@@ -66,11 +67,11 @@ class _LoginPageState extends State<LoginPage> {
           SoDienThoai: responseData['data']['SoDienThoai'] ?? "N/A",
           MatKhau: password,
         );
-
+        Cart cart = Cart(user: user);
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ListProductsPage(user: user),
+            builder: (context) => ListProductsPage(user: user,cart: cart,),
           ),
         );
       } else {

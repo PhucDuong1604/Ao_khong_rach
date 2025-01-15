@@ -1,3 +1,4 @@
+import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/screens/edit_profile_page.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/User.dart';
 import 'package:cua_hang_ao_khong_rach/screens/reset_password_page.dart';
@@ -6,7 +7,8 @@ import 'package:flutter/material.dart';
 
 class PersonalInformationPage extends StatefulWidget {
   final User user;
-  const PersonalInformationPage({super.key, required this.user});
+  final Cart cart;
+  const PersonalInformationPage({super.key, required this.user, required this.cart});
   @override
   State<PersonalInformationPage> createState() =>
       _PersonalInformationPageState();
@@ -50,6 +52,7 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
       ),
       drawer: DesignDrawer(
         user: widget.user,
+        cart: widget.cart,
       ),
       body: Center(
         child: Column(

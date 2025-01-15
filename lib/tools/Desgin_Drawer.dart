@@ -1,3 +1,4 @@
+import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/screens/List_products_page.dart';
 import 'package:cua_hang_ao_khong_rach/screens/personal_information_page.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/User.dart';
@@ -5,7 +6,8 @@ import 'package:flutter/material.dart';
 
 class DesignDrawer extends StatefulWidget {
   final User user;
-  const DesignDrawer({super.key, required this.user});
+  final Cart cart;
+  const DesignDrawer({super.key, required this.user, required this.cart});
   @override
   State<DesignDrawer> createState() => _DesignDrawerState();
 }
@@ -25,7 +27,7 @@ class _DesignDrawerState extends State<DesignDrawer> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => ListProductsPage(
-                            user: widget.user,
+                            user: widget.user, cart: widget.cart,
                           )));
             },
           ),
@@ -43,6 +45,7 @@ class _DesignDrawerState extends State<DesignDrawer> {
                   MaterialPageRoute(
                       builder: (context) => PersonalInformationPage(
                             user: widget.user,
+                            cart: widget.cart,
                           )));
             },
           ),
