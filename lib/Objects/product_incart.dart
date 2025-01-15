@@ -16,7 +16,8 @@ class ProductInCart {
     required this.mauSac,
     required this.kichThuoc,
   });
-@override
+
+
   String toString() {
     return 'ProductInCart(maSanPham: $maSanPham, tenSanPham: $tenSanPham, gia: $gia, '
         'hinhAnh: $hinhAnh, soLuong: $soLuong, mauSac: $mauSac, kichThuoc: $kichThuoc)';

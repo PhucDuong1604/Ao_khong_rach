@@ -7,6 +7,7 @@ class User {
   String? SoDienThoai;
   String? TrangThai;
   String? MatKhau;
+  String? DiaChi;
   List<Product>? list = [];
   User({
     this.MaTaiKhoan,
@@ -15,6 +16,7 @@ class User {
     this.SoDienThoai,
     this.TrangThai,
     this.MatKhau,
+    this.DiaChi
   });
 
   

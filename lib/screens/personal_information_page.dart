@@ -48,10 +48,7 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
           ),
         ],
       ),
-      drawer: DesignDrawer(
-        user: widget.user,
-        cart: widget.cart,
-      ),
+    
       body: Center(
         child: Column(
           
@@ -60,6 +57,7 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
             buildDetailRow('Số điện thoại:', '${widget.user.SoDienThoai}'),
             buildDetailRow('Email:', '${widget.user.Email}'),
             buildDetailRow('Password:', '${widget.user.MatKhau}'),
+            buildDetailRow('Địa Chỉ:', '${widget.user.DiaChi}'),
              Divider(
               color: Colors.black,  
               thickness: 2,         

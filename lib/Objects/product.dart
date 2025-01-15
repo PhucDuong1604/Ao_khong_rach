@@ -33,8 +33,8 @@ class Product {
       danhMuc: json['DanhMuc'],
       hinhAnh: json['HinhAnh'],
       soLuongTon: json['SoLuongTon'],
-      mauSac: json['MauSac'],
-      kichThuoc: json['KichThuoc'],
+      mauSac: json['chitiet']['MauSac'],
+      kichThuoc: json['chitiet']['KichThuoc'],
       SoLuong: json['SoLuong'],
     );
   }

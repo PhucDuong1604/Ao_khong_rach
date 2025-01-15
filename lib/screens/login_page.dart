@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({"email": email, "password": password}),
       );
-      print('Response body: ${response.body}'); 
+      print('Response body: ${response.body}');  
       final responseData = jsonDecode(response.body);
 
       setState(() {
@@ -64,6 +64,7 @@ class _LoginPageState extends State<LoginPage> {
           Email: email,
           SoDienThoai: responseData['data']['SoDienThoai'] ?? "N/A",
           MatKhau: password,
+          DiaChi: responseData['data']['DiaChi']
         );
         Cart cart = Cart(user: user);
         Navigator.push(

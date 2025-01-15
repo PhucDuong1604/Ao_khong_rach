@@ -16,14 +16,6 @@ class DetailProduct extends StatefulWidget {
 }
 
 class _DetailProductState extends State<DetailProduct> {
-  String selectedColor = ''; 
-  String selectedSize = ''; 
-
-  
-  void updateProduct() {
-    print('Cập nhật sản phẩm với màu: $selectedColor và kích thước: $selectedSize');
-    
-  }
   
   @override
   Widget build(BuildContext context) {
@@ -96,12 +88,16 @@ class _DetailProductState extends State<DetailProduct> {
                   children: [
                     BuildContent("Name: ", widget.product.tenSanPham),
                     const SizedBox(height: 10),
-                   
                     BuildContent("Price: ", widget.product.gia as String ),
                     const SizedBox(height: 10),
+                    BuildContent("Color: ", widget.product.mauSac  ),
+                    const SizedBox(height: 10),
+                    BuildContent("Size: ", widget.product.kichThuoc  ),
+                    const SizedBox(height: 10),
+                
                   ],
                 ),
-              ),
+              ),/*
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Column(
@@ -184,7 +180,7 @@ class _DetailProductState extends State<DetailProduct> {
                     ),
                   ],
                 ),
-              ),
+              ),*/
               Padding(
                 padding: EdgeInsets.all(5),
                 child: Row(
@@ -228,7 +224,7 @@ class _DetailProductState extends State<DetailProduct> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10))),
                         onPressed: () {
-                          updateProduct();
+            
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,

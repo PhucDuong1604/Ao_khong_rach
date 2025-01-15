@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cua_hang_ao_khong_rach/Objects/User.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/product_incart.dart';
@@ -18,13 +20,11 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   
    late Future<List<Map<String, dynamic>>> _cartItems;
-   
      get http => null;
-
-  // Lấy giỏ hàng từ API
-  /*Future<List<Map<String, dynamic>>> _fetchCartItems() async {
+     
+  Future<List<Map<String, dynamic>>> _fetchCartItems() async {
     final response = await http.get(
-      Uri.parse('https://yourapi.com/giohang/${widget.user.MaTaiKhoan}'),
+      Uri.parse( 'http://localhost:8888/restful_api_php/api/giohang/dsgiohang.php?MaKhachHang=${widget.user.MaTaiKhoan}'),
       headers: {'Content-Type': 'application/json'},
     );
 
@@ -35,7 +35,7 @@ class _CartPageState extends State<CartPage> {
       throw Exception('Không thể tải giỏ hàng');
     }
   }
-*/
+
   @override
   void initState() {
     super.initState();
