@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $db = new Database();
         $conn = $db->connect();
-        $sql = "SELECT MaTaiKhoan, HoTen, Email, SoDienThoai, MatKhau, TrangThai 
+        $sql = "SELECT MaTaiKhoan, HoTen, Email, SoDienThoai, MatKhau, TrangThai, DiaChi
                 FROM TaiKhoan 
                 WHERE Email = ? AND MatKhau = ?";
         $stmt = $conn->prepare($sql);
@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['email'] = $user['Email'];
                 $_SESSION['MaTaiKhoan'] = $user['MaTaiKhoan'];
                 $_SESSION['HoTen'] = $user['HoTen'];
+                $_SESSION['DiaChi'] = $user['DiaChi'];
                 
                 echo json_encode([
                     "success" => true,
@@ -45,7 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         "HoTen" => $user['HoTen'],
                         "Email" => $user['Email'],
                         "SoDienThoai" => $user['SoDienThoai'],
-                        "TrangThai" => $user['TrangThai']
+                        "TrangThai" => $user['TrangThai'],
+                        "DiaChi" => $user['DiaChi'],
                     ]
                 ]);
             } else {

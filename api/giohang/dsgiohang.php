@@ -15,7 +15,10 @@ if (isset($_GET['MaKhachHang']) && !empty($_GET['MaKhachHang'])) {
         giohang.Gia, 
         giohang.SoLuong, 
         hinhanhsanpham.LinkHinhAnh, 
+        sanpham.TenSanPham,
+        chitietsanpham.MaKichThuoc,
         (giohang.Gia * giohang.SoLuong) AS TotalPrice
+      
       FROM giohang
       JOIN chitietsanpham ON giohang.MaChiTietSanPham = chitietsanpham.MaChiTietSanPham
       JOIN sanpham ON chitietsanpham.MaSanPham = sanpham.MaSanPham
@@ -36,6 +39,8 @@ if (isset($_GET['MaKhachHang']) && !empty($_GET['MaKhachHang'])) {
                 'Gia' => $row['Gia'],
                 'SoLuong' => $row['SoLuong'],
                 'HinhAnh' => $row['LinkHinhAnh'],
+                'TenSanPham' => $row['TenSanPham'],
+                'MaKichThuoc' => $row['MaKichThuoc'],
                 'TotalPrice' => $row['TotalPrice']
             ];
         }
