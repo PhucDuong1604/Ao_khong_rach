@@ -8,7 +8,7 @@ class Product {
   final String soLuongTon;
   final String mauSac;
   final String kichThuoc;
-
+  int SoLuong;
   Product({
     required this.maSanPham,
     required this.tenSanPham,
@@ -19,6 +19,7 @@ class Product {
     required this.soLuongTon,
     required this.mauSac,
     required this.kichThuoc,
+    required this.SoLuong
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -32,6 +33,7 @@ class Product {
       soLuongTon: json['SoLuongTon'],
       mauSac: json['MauSac'],
       kichThuoc: json['KichThuoc'],
+      SoLuong: json['SoLuong'],
     );
   }
 }

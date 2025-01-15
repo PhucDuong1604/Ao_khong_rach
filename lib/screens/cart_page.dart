@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cua_hang_ao_khong_rach/tools/Build_Content.dart';
 import 'package:cua_hang_ao_khong_rach/tools/Build_card_in_cart.dart';
 import 'package:cua_hang_ao_khong_rach/tools/Desgin_Drawer.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/User.dart';
@@ -10,12 +11,14 @@ class CartPage extends StatefulWidget {
   
   CartPage({super.key, required this.user});
   
+  get product => null;
+  
   @override
   State<CartPage> createState() => _CartPageState();
 }
 
 class _CartPageState extends State<CartPage> {
-
+  
    late Future<List<Map<String, dynamic>>> _cartItems;
    
      get http => null;
@@ -72,9 +75,54 @@ class _CartPageState extends State<CartPage> {
             ),
           ],
         ),
-        drawer: DesignDrawer(
-          user: widget.user,
-        ),
+        bottomNavigationBar: BottomAppBar(
+            color: Color.fromARGB(253, 158, 158, 158),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Tổng hoá đơn:",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                     
+                  ],
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        fixedSize: Size(180, 100)),
+                    child: const Row(
+                      children: [
+                        Icon(
+                          Icons.receipt_long_rounded,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "Đơn hàng (4)",
+                          style: TextStyle(color: Colors.white, fontSize: 15),
+                        )
+                      ],
+                    ))
+              ],
+            )),
         body: DecoratedBox(
             decoration: const BoxDecoration(
               image: DecorationImage(

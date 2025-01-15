@@ -24,6 +24,7 @@ Future<List<Product>> fetchProducts(String name) async {
         soLuongTon: item['SoLuongTon'] ?? '',
         maSanPham: '',
         danhMuc: '',
+        SoLuong: 0
       ));
     }
     return productList;

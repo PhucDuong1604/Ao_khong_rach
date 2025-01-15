@@ -31,14 +31,12 @@ class _BuildCardInCartState extends State<BuildCardInCart> {
   }
 
     String getTotalPrice() {
-    // Chuyển giá từ String sang double và tính tổng tiền
-    double price = double.tryParse(widget.product.gia.toString()) ?? 0.0; // Chuyển đổi từ String sang double
-    double total = price * quantity; // Tính tổng giá
-    return total.toStringAsFixed(2); // Chuyển thành chuỗi và làm tròn đến 2 chữ số thập phân
+    double price = double.tryParse(widget.product.gia.toString()) ?? 0.0; 
+    double total = price * quantity; 
+    return total.toStringAsFixed(2); 
   }
-  // Hàm xóa sản phẩm khỏi giỏ hàng
+  
   void removeProduct() {
-    // Xử lý xóa sản phẩm khỏi giỏ hàng ở đây (có thể gọi API hoặc cập nhật trạng thái)
     print('Sản phẩm đã được xóa khỏi giỏ hàng');
   }
 

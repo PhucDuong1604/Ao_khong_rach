@@ -239,9 +239,7 @@ class _DetailProductState extends State<DetailProduct> {
             ),
           ],
         ),
-        drawer: DesignDrawer(
-          user: widget.user,
-        ),
+       
         body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

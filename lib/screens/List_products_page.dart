@@ -22,7 +22,7 @@ Future<List<Product>> fetchProducts() async {
         gia: item['Gia'] ?? '',
         kichThuoc: item['KichThuoc'] ?? '',
         mauSac: item['MauSac'] ?? '',
-        soLuongTon: item['SoLuongTon'], maSanPham: '', moTa: '', danhMuc: '',
+        soLuongTon: item['SoLuongTon'], maSanPham: '', moTa: '', danhMuc: '',SoLuong: 0
       ));
     }
     return productList;
