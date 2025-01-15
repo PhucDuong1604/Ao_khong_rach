@@ -7,6 +7,8 @@
     $conn = $db->connect();
 
     $sp = new SanPham($conn);
+
+    $name = 'ao';
     $query = "
         SELECT 
             sp.MaSanPham, sp.TenSanPham, sp.Gia, sp.MoTa AS MoTaSanPham,
@@ -29,9 +31,13 @@
             KichThuoc kt ON ctsp.MaKichThuoc = kt.MaKichThuoc
         WHERE 
             sp.TrangThai = 'ConHang'
-        ORDER BY 
-            sp.TenSanPham;
     ";
+
+    if (!empty($name)) {
+        $query .= " AND sp.TenSanPham LIKE '%" . mysqli_real_escape_string($conn, $name) . "%'";
+    }
+
+    $query .= " ORDER BY sp.TenSanPham";
 
     $result = mysqli_query($conn, $query);
 
@@ -42,7 +48,7 @@
 
         while ($row = mysqli_fetch_assoc($result)) {
             $maSanPham = $row["MaSanPham"];
-            
+           
             if (!isset($sanpham_cache[$maSanPham])) {
                 $sanpham_cache[$maSanPham] = array(
                     "MaSanPham" => $row["MaSanPham"],
@@ -54,7 +60,6 @@
                     "HinhAnhChinh" => $row["HinhAnhChinh"],
                     "SoLuongTon" => $row["SoLuongTon"],
                     "MauSac" => $row["TenMauSac"],
-                    "KichThuoc" => $row["TenKichThuoc"],
                     "ChiTiet" => []
                 );
             }
