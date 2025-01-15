@@ -29,8 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode(["success" => false, "message" => "Mật khẩu mới phải có ít nhất 8 ký tự."]);
         exit;
     }
-
-    // Kết nối cơ sở dữ liệu
     $db = new Database();
     $conn = $db->connect();
     if (!$conn) {
@@ -38,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Kiểm tra tài khoản trong bảng 'TaiKhoan'
     $stmt = $conn->prepare("SELECT MatKhau FROM taikhoan WHERE Email =?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -55,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Cập nhật mật khẩu trong bảng 'TaiKhoan'
     $update_stmt = $conn->prepare("UPDATE TaiKhoan SET MatKhau = ? WHERE Email = ?");
     $update_stmt->bind_param("ss", $new_password, $email);
 
@@ -64,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Cập nhật mật khẩu trong bảng 'KhachHang'
     $update_stmt_kh = $conn->prepare("UPDATE KhachHang SET MatKhau = ? WHERE Email = ?");
     $update_stmt_kh->bind_param("ss", $new_password, $email);
 
@@ -74,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode(["success" => false, "message" => "Lỗi khi cập nhật mật khẩu trong bảng KhachHang."]);
     }
 
-    // Đóng kết nối và chuẩn bị các truy vấn
     $stmt->close();
     $update_stmt->close();
     $update_stmt_kh->close();

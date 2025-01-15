@@ -47,6 +47,5 @@ if ($result->num_rows > 0) {
     echo json_encode(array("success" => false, "message" => "Không tìm thấy tài khoản nào."));
 }
 
-// Đóng kết nối
 $conn->close();
 ?>

@@ -40,19 +40,18 @@ class KhachHang
 
     private function generateMaKhachHang()
     {
-        // Tạo mã khách hàng dựa trên dữ liệu hiện có
+
         $query = "SELECT MAX(MaKhachHang) AS LastID FROM KhachHang";
         $result = mysqli_query($this->conn, $query);
 
         if ($result) {
             $row = mysqli_fetch_assoc($result);
             if ($row && $row['LastID']) {
-                $lastIdNumber = (int) substr($row['LastID'], 2); // Tách số từ "KH001"
-                $newId = "KH" . str_pad($lastIdNumber + 1, 3, "0", STR_PAD_LEFT); // Sinh mã mới
+                $lastIdNumber = (int) substr($row['LastID'], 2);
+                $newId = "KH" . str_pad($lastIdNumber + 1, 3, "0", STR_PAD_LEFT); 
                 return $newId;
             }
         }
-        // Nếu không có dữ liệu, trả về mã mặc định
         return "KH001";
     }
   

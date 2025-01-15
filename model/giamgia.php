@@ -2,7 +2,7 @@
 class GiamGia
 {
     private $conn;
-    //thuộc tính của bảng giamgia
+
     public $MaGiamGia ;
     public $MaGiamGiaCode  ;
     public $MoTa ;
@@ -11,7 +11,7 @@ class GiamGia
     public $NgayKetThuc ;
     public $TrangThai ;
 
-    //connect database
+
     public function __construct($conn)
     {
         $this->conn = $conn;

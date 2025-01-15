@@ -7,8 +7,6 @@
     $conn = $db->connect();
 
     $sp = new SanPham($conn);
-
-    // Câu truy vấn SQL để lấy dữ liệu sản phẩm kèm theo các thông tin liên quan
     $query = "
         SELECT 
             sp.MaSanPham, sp.TenSanPham, sp.Gia, sp.MoTa AS MoTaSanPham,
@@ -35,20 +33,16 @@
             sp.TenSanPham;
     ";
 
-    // Thực thi truy vấn
     $result = mysqli_query($conn, $query);
 
-    // Kiểm tra kết quả
     if (mysqli_num_rows($result) > 0) {
         $dssp = [];
         $dssp["dssanpham"] = [];
         $sanpham_cache = [];
 
-        // Duyệt qua tất cả các sản phẩm
         while ($row = mysqli_fetch_assoc($result)) {
             $maSanPham = $row["MaSanPham"];
             
-            // Nếu sản phẩm đã tồn tại trong mảng $sanpham_cache, gộp các chi tiết lại
             if (!isset($sanpham_cache[$maSanPham])) {
                 $sanpham_cache[$maSanPham] = array(
                     "MaSanPham" => $row["MaSanPham"],
@@ -64,7 +58,6 @@
                 );
             }
 
-            // Thêm màu sắc và kích thước vào chi tiết sản phẩm
             if ($row["TenMauSac"]) {
                 $sanpham_cache[$maSanPham]["ChiTiet"][] = array(
                     "MauSac" => $row["TenMauSac"],
@@ -73,17 +66,14 @@
             }
         }
 
-        // Chuyển từ mảng cache thành kết quả trả về
         foreach ($sanpham_cache as $sanpham) {
             $dssp["dssanpham"][] = $sanpham;
         }
 
-        // Trả về kết quả dưới dạng JSON
         echo json_encode($dssp);
     } else {
         echo json_encode(array("message" => "Không có sản phẩm nào."));
     }
 
-    // Đóng kết nối
     mysqli_close($conn);
 ?>

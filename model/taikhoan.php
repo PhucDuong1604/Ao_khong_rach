@@ -2,7 +2,7 @@
 class TaiKhoan
 {
     private $conn;
-    //thuộc tính của bảng nhanvien
+
     public $LoaiTaiKhoan;
     public $MaTaiKhoan;
     public $HoTen;
@@ -11,7 +11,6 @@ class TaiKhoan
     public $SoDienThoai;
     public $TrangThai;
 
-    //connect database
     public function __construct($conn)
     {
         $this->conn = $conn;

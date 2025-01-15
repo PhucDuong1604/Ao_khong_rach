@@ -2,7 +2,7 @@
 class DonHang
 {
     private $conn;
-    //thuộc tính của bảng don_hang
+
     public $MaDonHang  ;
     public $MaKhachHang   ;
     public $NgayDatHang ;
@@ -17,7 +17,6 @@ class DonHang
     public $DiaChi  ;
     public $SoDienThoaiNguoiNhan ;
 
-    //connect database
     public function __construct($conn)
     {
         $this->conn = $conn;

@@ -2,7 +2,7 @@
 class NhanVien
 {
     private $conn;
-    //thuộc tính của bảng nhanvien
+
     public $MaNhanVien;
     public $HoTen;
     public $Email;
@@ -11,7 +11,6 @@ class NhanVien
     public $VaiTro;
     public $TrangThai;
 
-    //connect database
     public function __construct($conn)
     {
         $this->conn = $conn;

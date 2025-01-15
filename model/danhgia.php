@@ -2,7 +2,7 @@
 class DanhGiaSanPham
 {
     private $conn;
-    //thuộc tính của bảng danhgia
+
     public $MaDanhGia  ;
     public $MaSanPham   ;
     public $MaKhachHang  ;
@@ -10,8 +10,6 @@ class DanhGiaSanPham
     public $NoiDung ;
     public $NgayDanhGia ;
 
-
-    //connect database
     public function __construct($conn)
     {
         $this->conn = $conn;

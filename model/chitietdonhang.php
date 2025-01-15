@@ -2,15 +2,14 @@
 class ChiTietDonHang
 {
     private $conn;
-    //thuộc tính của bảng chitietdonhang
-    
+
     public $MaChiTietDonHang ;
     public $MaDonHang ;
     public $MaSanPham ;
     public $SoLuong;
     public $Gia;
 
-    //connect database
+
     public function __construct($conn)
     {
         $this->conn = $conn;

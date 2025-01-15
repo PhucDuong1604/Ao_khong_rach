@@ -2,7 +2,7 @@
 class ChiTietGioHang
 {
     private $conn;
-    //thuộc tính của bảng chitietgiohang
+
     public $MaChiTietGioHang;
     public $MaGioHang;
     public $MaSanPham;
@@ -10,7 +10,6 @@ class ChiTietGioHang
     public $Gia;
     public $TrangThai;
 
-    //connect database
     public function __construct($conn)
     {
         $this->conn = $conn;
