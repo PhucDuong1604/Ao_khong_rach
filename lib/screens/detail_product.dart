@@ -140,7 +140,6 @@ class _DetailProductState extends State<DetailProduct> {
                   ],
                 ),
               ),
-              // Checkbox cho kích thước
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Column(

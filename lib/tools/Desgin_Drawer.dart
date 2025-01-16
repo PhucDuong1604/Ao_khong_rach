@@ -50,7 +50,6 @@ class _DesignDrawerState extends State<DesignDrawer> {
                     );
                   },
                 ),
-                // Mục cho Quần
                 ListTile(
                   leading: Icon(Icons.check_box),
                   title: Text('Pant'),
@@ -129,5 +128,3 @@ class _DesignDrawerState extends State<DesignDrawer> {
     );
   }
 }
-/*
-*/

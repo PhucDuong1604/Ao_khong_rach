@@ -68,13 +68,13 @@ class _ResetPageState extends State<ResetPage> {
         }),
         headers: {"Content-Type": "application/json"},
       );
-      print('Response body: ${response.body}'); // In nội dung phản hồi
+      print('Response body: ${response.body}'); 
 
       final result = jsonDecode(response.body);
 
       if (response.statusCode == 200 && result['success']) {
         _showMessage(result['message']);
-        Navigator.pop(context); // Quay lại màn hình trước đó
+        Navigator.pop(context); 
       } else {
         _showMessage(result['message']);
       }

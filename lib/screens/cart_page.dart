@@ -170,12 +170,37 @@ class _CartPageState extends State<CartPage> {
                                     }
                                     print(order.getProducts());
                                   }),
-                              IconButton(
-                                color: Colors.red,
-                                onPressed: () => widget.cart.deleteProduct(
-                                    widget.cart.GetList()[index]),
-                                icon: Icon(Icons.delete),
-                              )
+                            IconButton(
+                            color: Colors.red,
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: const Text("Xác nhận xóa"),
+                                  content: const Text("Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?"),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text("Hủy"),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          widget.cart.deleteProduct(widget.cart.GetList()[index]);
+                                        });
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text("Xóa"),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                            icon: const Icon(Icons.delete),
+                          ),
+
                             ]))
                       ],
                     ),

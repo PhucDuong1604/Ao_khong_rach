@@ -21,7 +21,6 @@ class _PayPageState extends State<PayPage> {
   @override
   void initState() {
     super.initState();
-    // Pre-fill the address from user data
     addressController.text = widget.user.address ?? '';
   }
 
@@ -75,7 +74,6 @@ class _PayPageState extends State<PayPage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                // Product details
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
@@ -163,8 +161,6 @@ class _PayPageState extends State<PayPage> {
                     const SizedBox(width: 20),
                     ElevatedButton(
                       onPressed: () {
-                        // Add payment processing logic here
-                        // Show success dialog
                         showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
@@ -177,7 +173,7 @@ class _PayPageState extends State<PayPage> {
                                   Navigator.of(context)
                                     ..pop()
                                     ..pop()
-                                    ..pop(); // Return to product list
+                                    ..pop(); 
                                 },
                                 child: const Text("OK"),
                               ),
