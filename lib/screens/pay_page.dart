@@ -1,5 +1,8 @@
+import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/product.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/User.dart';
+import 'package:cua_hang_ao_khong_rach/Objects/product_incart.dart';
+import 'package:cua_hang_ao_khong_rach/tools/Build_Content.dart';
 import 'package:cua_hang_ao_khong_rach/tools/Build_TextField.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +20,8 @@ class _PayPageState extends State<PayPage> {
   final TextEditingController expiryDateController = TextEditingController();
   final TextEditingController cvvController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
+  
+  get index => null;
 
   @override
   void initState() {
@@ -83,21 +88,23 @@ class _PayPageState extends State<PayPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Product: ${widget.product.tenSanPham}",
-                        style:
-                            const TextStyle(fontSize: 16, color: Colors.black),
+                     BuildContent(
+                       title: "Name: ",
+                       content:
+                       widget.product.tenSanPham,
                       ),
-                      Text(
-                        "Price: ${widget.product.gia} VND",
-                        style:
-                            const TextStyle(fontSize: 16, color: Colors.black),
+                      const SizedBox(height: 10),
+                      BuildContent(
+                      title: "Color: ",
+                      content: widget.product.mauSac,
                       ),
-                      Text(
-                        "Size: ${widget.product.SoLuong}",
-                        style:
-                            const TextStyle(fontSize: 16, color: Colors.black),
+                      const SizedBox(height: 10),
+                      BuildContent(
+                      title: "Price: ",
+                      content: widget.product.gia,
                       ),
+                      const SizedBox(height: 10),
+                              
                     ],
                   ),
                 ),

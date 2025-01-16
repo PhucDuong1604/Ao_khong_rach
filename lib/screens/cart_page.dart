@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 class CartPage extends StatefulWidget {
   final Cart cart;
   User user;
+  
+  var product;
 
   CartPage({
     super.key,
@@ -265,8 +267,8 @@ class _CartPageState extends State<CartPage> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    
-                  },
+                          
+                        },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black, fixedSize: Size(180, 100)),
                   child: const Row(
