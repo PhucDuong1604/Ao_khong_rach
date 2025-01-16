@@ -47,11 +47,14 @@ class _LoginPageState extends State<LoginPage> {
 
     try {
       final response = await http.post(
-        Uri.parse('http://localhost:8888/restful_api_php/api/taikhoan/login.php'), 
+        Uri.parse(
+            'http://localhost:8888/restful_api_php/api/taikhoan/login.php'),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({"email": email, "password": password}),
       );
-      print('Response body: ${response.body}'); 
+
+      print('Response body: ${response.body}');
+
       final responseData = jsonDecode(response.body);
 
       setState(() {
@@ -64,13 +67,16 @@ class _LoginPageState extends State<LoginPage> {
           Email: email,
           SoDienThoai: responseData['data']['SoDienThoai'] ?? "N/A",
           MatKhau: password,
-          DiaChi: responseData['data']['DiaChi'] ,
+          DiaChi: responseData['data']['DiaChi'],
         );
         Cart cart = Cart(user: user);
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ListProductsPage(user: user,cart: cart,),
+            builder: (context) => ListProductsPage(
+              user: user,
+              cart: cart,
+            ),
           ),
         );
       } else {
@@ -79,12 +85,12 @@ class _LoginPageState extends State<LoginPage> {
         );
       }
     } catch (e) {
-       setState(() {
-    isLoading = false;
-  });
-    print('Lỗi: $e'); 
-    ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(content: Text("Có lỗi xảy ra khi đăng nhập.")),
+      setState(() {
+        isLoading = false;
+      });
+      print('Lỗi: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Có lỗi xảy ra khi đăng nhập.")),
       );
     }
   }
@@ -92,8 +98,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromARGB(245, 6, 209, 228),
-        body: DecoratedBox(
+      backgroundColor: const Color.fromARGB(245, 6, 209, 228),
+      body: DecoratedBox(
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("images/bg.jpg"),
@@ -225,6 +231,6 @@ class _LoginPageState extends State<LoginPage> {
                   )
                 ]),
           ))),
-        );
+    );
   }
 }

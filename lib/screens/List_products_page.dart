@@ -95,8 +95,8 @@ class _ListProductsPageState extends State<ListProductsPage> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => CartPage(
+                          cart: widget.cart,
                           user: widget.user,
-                          cart: widget.cart, list: [],
                         )),
               );
             },

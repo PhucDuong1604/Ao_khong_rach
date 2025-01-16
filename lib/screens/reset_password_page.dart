@@ -14,7 +14,7 @@ class ResetPage extends StatefulWidget {
 }
 
 class _ResetPageState extends State<ResetPage> {
- // final emailController = TextEditingController();
+  // final emailController = TextEditingController();
   final currentPasswordController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
@@ -23,7 +23,7 @@ class _ResetPageState extends State<ResetPage> {
   @override
   void dispose() {
     super.dispose();
-   // emailController.dispose();
+    // emailController.dispose();
     currentPasswordController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
@@ -68,13 +68,13 @@ class _ResetPageState extends State<ResetPage> {
         }),
         headers: {"Content-Type": "application/json"},
       );
-      print('Response body: ${response.body}'); 
+      print('Response body: ${response.body}');
 
       final result = jsonDecode(response.body);
 
       if (response.statusCode == 200 && result['success']) {
         _showMessage(result['message']);
-        Navigator.pop(context); 
+        Navigator.pop(context);
       } else {
         _showMessage(result['message']);
       }

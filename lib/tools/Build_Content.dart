@@ -13,16 +13,16 @@ class _BuildContentState extends State<BuildContent> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           widget.title,
-          style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         SizedBox(width: 10),
         Text(
           widget.content,
-          style: const TextStyle(fontSize: 18, color: Colors.black),
+          style: const TextStyle(fontSize: 20, color: Colors.black),
         ),
       ],
     );

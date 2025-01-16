@@ -8,21 +8,22 @@ class Product {
   final String danhMuc;
   final String hinhAnh;
   final String soLuongTon;
-  final String mauSac;
-  final String kichThuoc;
+  int soluongtronggiohang;
+  String mauSac;
+  String kichThuoc;
   int SoLuong;
-  Product({
-    required this.maSanPham,
-    required this.tenSanPham,
-    required this.moTa,
-    required this.gia,
-    required this.danhMuc,
-    required this.hinhAnh,
-    required this.soLuongTon,
-    required this.mauSac,
-    required this.kichThuoc,
-    required this.SoLuong
-  });
+  Product(
+      {required this.maSanPham,
+      required this.tenSanPham,
+      required this.moTa,
+      required this.gia,
+      required this.danhMuc,
+      required this.hinhAnh,
+      required this.soLuongTon,
+      required this.mauSac,
+      required this.kichThuoc,
+      required this.SoLuong,
+      this.soluongtronggiohang = 1});
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
@@ -37,5 +38,35 @@ class Product {
       kichThuoc: json['KichThuoc'],
       SoLuong: json['SoLuong'],
     );
+  }
+  void setColorAndSize(String color, String size) {
+    mauSac = color;
+    kichThuoc = size;
+  }
+
+  double totalPrice() {
+    return soluongtronggiohang * double.parse(gia);
+  }
+
+  void increaseQuantity({int amount = 1}) {
+    soluongtronggiohang += amount;
+    print(soluongtronggiohang);
+  }
+
+  void decreaseQuantity({int amount = 1}) {
+    if (soluongtronggiohang > amount) {
+      soluongtronggiohang -= amount;
+    } else {
+      soluongtronggiohang = 1;
+    }
+    print(soluongtronggiohang);
+  }
+
+  int getQuantity() {
+    return soluongtronggiohang;
+  }
+
+  Product getProduct() {
+    return this;
   }
 }

@@ -2,20 +2,18 @@ import 'package:cua_hang_ao_khong_rach/Objects/User.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/order.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/product_incart.dart';
-import 'package:cua_hang_ao_khong_rach/screens/pay_page.dart';
+import 'package:cua_hang_ao_khong_rach/screens/order_for_client.dart';
+
 import 'package:cua_hang_ao_khong_rach/tools/Build_Content.dart';
 import 'package:flutter/material.dart';
 
 class CartPage extends StatefulWidget {
   final Cart cart;
   User user;
-  
-  var product;
-
   CartPage({
     super.key,
     required this.cart,
-    required this.user, required List<ProductInCart> list,
+    required this.user,
   });
 
   @override
@@ -113,19 +111,25 @@ class _CartPageState extends State<CartPage> {
                                 content:
                                     widget.cart.GetList()[index].tenSanPham,
                               ),
-                              const SizedBox(height: 10),
+                              const SizedBox(height: 3),
                               BuildContent(
                                 title: "Color: ",
                                 content: widget.cart.GetList()[index].mauSac,
                               ),
-                              const SizedBox(height: 10),
+                              const SizedBox(height: 3),
                               BuildContent(
-                                title: "Price: ",
-                                content: widget.cart.GetList()[index].gia,
+                                title: "Size: ",
+                                content: widget.cart.GetList()[index].kichThuoc,
                               ),
-                              const SizedBox(height: 10),
+                              const SizedBox(height: 3),
                               Row(
                                 children: [
+                                  const Text(
+                                    "Quantity: ",
+                                    style: const TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                   IconButton(
                                     onPressed: () {
                                       _decrease(widget.cart.GetList()[index]);
@@ -144,66 +148,79 @@ class _CartPageState extends State<CartPage> {
                                 ],
                               ),
                               BuildContent(
-                                title: "Total Price: ",
+                                title: "Price: ",
                                 content:
-                                    '${widget.cart.GetList()[index].totalPrice()} VND',
+                                    '${widget.cart.GetList()[index].gia} VND',
                               ),
                             ],
                           ),
                         ),
                         Expanded(
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                              Checkbox(
-                                  value: widget.cart.GetList()[index].checked,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      widget.cart.GetList()[index].checked =
-                                          value!;
-                                    });
-                                    if (widget.cart.GetList()[index].checked) {
-                                      order.addProduct(
-                                          widget.cart.GetList()[index]);
-                                    } else {
-                                      order.removeProduct(
-                                          widget.cart.GetList()[index]);
-                                    }
-                                    print(order.getProducts());
-                                  }),
-                            IconButton(
-                            color: Colors.red,
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  title: const Text("Xác nhận xóa"),
-                                  content: const Text("Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?"),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text("Hủy"),
+                            child: Padding(
+                          padding: EdgeInsets.only(right: 30),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Checkbox(
+                                    value: widget.cart.GetList()[index].checked,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        widget.cart.GetList()[index].checked =
+                                            value!;
+                                      });
+                                      if (widget.cart
+                                          .GetList()[index]
+                                          .checked) {
+                                        order.addProduct(
+                                            widget.cart.GetList()[index]);
+                                      } else {
+                                        order.removeProduct(
+                                            widget.cart.GetList()[index]);
+                                      }
+                                      print(order.getProducts());
+                                    }),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: IconButton(
+                                    color: Colors.red,
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                          title: const Text("Xác nhận xóa"),
+                                          content: const Text(
+                                              "Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?"),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text("Hủy"),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  widget.cart.deleteProduct(
+                                                      widget.cart
+                                                          .GetList()[index]);
+                                                });
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text("Xóa"),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      size: 30,
                                     ),
-                                    TextButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          widget.cart.deleteProduct(widget.cart.GetList()[index]);
-                                        });
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text("Xóa"),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                            icon: const Icon(Icons.delete),
-                          ),
-
-                            ]))
+                                  ),
+                                )
+                              ]),
+                        ))
                       ],
                     ),
                   ),
@@ -225,7 +242,7 @@ class _CartPageState extends State<CartPage> {
                       Row(
                         children: [
                           const Text(
-                            "Tổng hoá đơn:",
+                            "Total bill:",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 18,
@@ -243,7 +260,7 @@ class _CartPageState extends State<CartPage> {
                       Row(
                         children: [
                           const Text(
-                            "Tổng sản phẩm:",
+                            "Total selected products:",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 18,
@@ -263,12 +280,19 @@ class _CartPageState extends State<CartPage> {
                 ],
               ),
               const SizedBox(
-                width: 15,
+                width: 20,
               ),
               ElevatedButton(
                   onPressed: () {
-                          
-                        },
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => OrderForClient(
+                                user: widget.user,
+                                order: order,
+                              )),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black, fixedSize: Size(180, 100)),
                   child: const Row(

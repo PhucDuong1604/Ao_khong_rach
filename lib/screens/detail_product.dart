@@ -1,4 +1,3 @@
-
 import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/product.dart';
 import 'package:cua_hang_ao_khong_rach/tools/Desgin_Drawer.dart';
@@ -10,18 +9,31 @@ class DetailProduct extends StatefulWidget {
   Product product;
   User user;
   Cart cart;
-  DetailProduct({super.key, required this.product, required this.user, required this.cart});
+  DetailProduct(
+      {super.key,
+      required this.product,
+      required this.user,
+      required this.cart});
   @override
   State<DetailProduct> createState() => _DetailProductState();
 }
 
 class _DetailProductState extends State<DetailProduct> {
-  String selectedColor = ''; 
+  String selectedColor = '';
   String selectedSize = '';
-  void updateProduct() {
-    print('Cập nhật sản phẩm với màu: $selectedColor và kích thước: $selectedSize');
+
+  void _increase() {
+    setState(() {
+      widget.product.increaseQuantity();
+    });
   }
-  
+
+  void _decrease() {
+    setState(() {
+      widget.product.decreaseQuantity();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,14 +45,20 @@ class _DetailProductState extends State<DetailProduct> {
             height: 100,
             width: 100,
           ),
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+                widget.product.soluongtronggiohang = 1;
+                print(widget.product.soluongtronggiohang);
+              },
+              icon: const Icon(Icons.arrow_back)),
           actions: [
             IconButton(
               icon: const Icon(
                 Icons.search,
                 color: Colors.black,
               ),
-              onPressed: () {
-              },
+              onPressed: () {},
             ),
             const SizedBox(
               width: 10,
@@ -50,134 +68,162 @@ class _DetailProductState extends State<DetailProduct> {
                 Icons.notifications,
                 color: Colors.black,
               ),
-              onPressed: () {
-              },
+              onPressed: () {},
             ),
           ],
         ),
-       
         body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: EdgeInsets.only(top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.arrow_back_ios,
-                          color: Colors.black,
-                        )),
-                    const SizedBox(width: 10),
-                    Image.network(
-                      widget.product.hinhAnh,
-                      width: 400,
-                    ),
-                    const SizedBox(width: 10),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.black,
-                        )),
-                  ],
-                ),
+              Image.network(
+                widget.product.hinhAnh,
+                width: 350,
               ),
               Padding(
                 padding: EdgeInsets.only(left: 5),
                 child: Column(
                   children: [
                     BuildContent("Name: ", widget.product.tenSanPham),
-                    const SizedBox(height: 10),
-                   
-                    BuildContent("Price: ", widget.product.gia as String ),
-                    const SizedBox(height: 10),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Text("Color:"),
-                    SizedBox(width: 20,),
+                    BuildContent(
+                        "Price: ", "${widget.product.gia as String} VND"),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Checkbox(
-                          value: selectedColor == 'Red',
-                          onChanged: (bool? value) {
-                            setState(() {
-                              selectedColor = 'Red';
-                            });
-                          },
+                        const Text(
+                          "Color:",
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.bold),
                         ),
-                        Text('Red'),
-                        Checkbox(
-                          value: selectedColor == 'Black',
-                          onChanged: (bool? value) {
-                            setState(() {
-                              selectedColor = 'Black';
-                            });
-                          },
+                        const SizedBox(
+                          width: 20,
                         ),
-                        Text('Black'),
-                        Checkbox(
-                          value: selectedColor == 'White',
-                          onChanged: (bool? value) {
-                            setState(() {
-                              selectedColor = 'White';
-                            });
-                          },
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Checkbox(
+                              value: selectedColor == 'Red',
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  selectedColor = 'Red';
+                                });
+                              },
+                            ),
+                            const Text('Red',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black)),
+                            Checkbox(
+                              value: selectedColor == 'Black',
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  selectedColor = 'Black';
+                                });
+                              },
+                            ),
+                            const Text('Black',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black)),
+                            Checkbox(
+                              value: selectedColor == 'White',
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  selectedColor = 'White';
+                                });
+                              },
+                            ),
+                            const Text('White',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black)),
+                          ],
                         ),
-                        Text('White'),
                       ],
                     ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Text(" Size:"),
+                    const SizedBox(height: 10),
                     Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Checkbox(
-                          value: selectedSize == 'S',
-                          onChanged: (bool? value) {
-                            setState(() {
-                              selectedSize = 'S';
-                            });
-                          },
+                        const Text(
+                          "Size:",
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.bold),
                         ),
-                        Text('S'),
-                        Checkbox(
-                          value: selectedSize == 'M',
-                          onChanged: (bool? value) {
-                            setState(() {
-                              selectedSize = 'M';
-                            });
-                          },
+                        const SizedBox(
+                          width: 30,
                         ),
-                        Text('M'),
-                        Checkbox(
-                          value: selectedSize == 'L',
-                          onChanged: (bool? value) {
-                            setState(() {
-                              selectedSize = 'L';
-                            });
-                          },
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Checkbox(
+                              value: selectedSize == 'S',
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  selectedSize = 'S';
+                                });
+                              },
+                            ),
+                            const Text('S',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black)),
+                            const SizedBox(
+                              width: 24,
+                            ),
+                            Checkbox(
+                              value: selectedSize == 'M',
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  selectedSize = 'M';
+                                });
+                              },
+                            ),
+                            const Text('M',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black)),
+                            const SizedBox(
+                              width: 29,
+                            ),
+                            Checkbox(
+                              value: selectedSize == 'L',
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  selectedSize = 'L';
+                                });
+                              },
+                            ),
+                            const Text('L',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black)),
+                          ],
                         ),
-                        Text('L'),
                       ],
                     ),
+                    Row(
+                      children: [
+                        const Text(
+                          "Quantity:",
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            _decrease();
+                          },
+                          icon: Icon(Icons.remove),
+                        ),
+                        Text("${widget.product.soluongtronggiohang}",
+                            style: TextStyle(fontSize: 20)),
+                        IconButton(
+                          onPressed: () {
+                            _increase();
+                          },
+                          icon: Icon(Icons.add),
+                        ),
+                      ],
+                    ),
+                    BuildContent(
+                        "Total Price: ", "${widget.product.totalPrice()} VND"),
                   ],
                 ),
               ),
@@ -194,7 +240,51 @@ class _DetailProductState extends State<DetailProduct> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10))),
                         onPressed: () {
-                          widget.cart.addProduct(widget.product);
+                          Product temp = widget.product.getProduct();
+                          temp.setColorAndSize(selectedColor, selectedSize);
+                          print(temp.getProduct());
+                          if (selectedColor == "" || selectedSize == "") {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text("Warning"),
+                                content:
+                                    const Text("Please chose a color and size"),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text("OK"),
+                                  ),
+                                ],
+                              ),
+                            );
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text("Xác nhận thêm sản phẩm"),
+                                content: Text(
+                                    "Your product is \nName: ${temp.tenSanPham}\nColor: ${temp.mauSac}\nSize: ${temp.kichThuoc}\nQuantity: ${temp.soluongtronggiohang}"),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      widget.cart.addProduct(temp);
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text("Add to cart"),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text("Cancel"),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -223,9 +313,7 @@ class _DetailProductState extends State<DetailProduct> {
                             backgroundColor: const Color.fromARGB(255, 3, 3, 3),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10))),
-                        onPressed: () {
-                          updateProduct();
-                        },
+                        onPressed: () {},
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

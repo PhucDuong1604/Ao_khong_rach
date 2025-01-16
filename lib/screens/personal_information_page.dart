@@ -33,8 +33,7 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
               Icons.search,
               color: Colors.black,
             ),
-            onPressed: () {
-            },
+            onPressed: () {},
           ),
           const SizedBox(
             width: 10,
@@ -44,9 +43,7 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
               Icons.notifications,
               color: Colors.black,
             ),
-            onPressed: () {
-
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -57,8 +54,7 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
             buildDetailRow('Số điện thoại:', '${widget.user.SoDienThoai}'),
             buildDetailRow('Email:', '${widget.user.Email}'),
             buildDetailRow('Password:', '${widget.user.MatKhau}'),
-             buildDetailRow('Address:', '${widget.user.DiaChi}'),
-            
+            buildDetailRow('Address:', '${widget.user.DiaChi}'),
             Divider(
               color: Colors.black,
               thickness: 2,

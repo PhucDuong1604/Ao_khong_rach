@@ -96,7 +96,7 @@ class _ListProductsPageState extends State<CategoryQuanPage> {
                 MaterialPageRoute(
                     builder: (context) => CartPage(
                           user: widget.user,
-                          cart: widget.cart, list: [],
+                          cart: widget.cart,
                         )),
               );
             },

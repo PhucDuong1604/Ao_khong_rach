@@ -14,7 +14,8 @@ class BuildTextFieldPassword extends StatefulWidget {
 }
 
 class _BuildTextFieldPasswordState extends State<BuildTextFieldPassword> {
-  bool isLoading = false;
+  bool isLoading = true;
+
   bool checkIsLoading() {
     isLoading = !isLoading;
     return isLoading;
