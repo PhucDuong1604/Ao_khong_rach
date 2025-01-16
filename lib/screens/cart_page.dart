@@ -2,6 +2,7 @@ import 'package:cua_hang_ao_khong_rach/Objects/User.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/cart.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/order.dart';
 import 'package:cua_hang_ao_khong_rach/Objects/product_incart.dart';
+import 'package:cua_hang_ao_khong_rach/screens/pay_page.dart';
 import 'package:cua_hang_ao_khong_rach/tools/Build_Content.dart';
 import 'package:flutter/material.dart';
 
@@ -238,7 +239,9 @@ class _CartPageState extends State<CartPage> {
                 width: 15,
               ),
               ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black, fixedSize: Size(180, 100)),
                   child: const Row(

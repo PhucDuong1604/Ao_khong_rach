@@ -17,5 +17,6 @@ class User {
     this.MatKhau,
   });
 
+  get address => null;
   
 }
