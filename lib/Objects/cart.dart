@@ -48,34 +48,6 @@ class Cart {
     print("them tiep san pham vo nha");
   }
 
-  /*Future<List<dynamic>> layDanhSachSanPham(String maKhachHang) async {
-    final response = await http.get(Uri.parse(
-        'http://localhost:8888/restful_api_php/api/giohang/dsgiohang.php?MaKhachHang=${user.MaTaiKhoan}'));
-
-    if (response.statusCode == 200) {
-      return jsonDecode(response.body);
-    } else {
-      throw Exception('Failed to load products');
-    }
-  }*/
-
-  /*Future<void> _layDanhSachSanPham() async {
-    try {
-      final data = await layDanhSachSanPham(user.MaTaiKhoan.toString());
-      for (int i = 0; i < data.length; i++) {
-        Product product = Product(
-            maSanPham: data[i]['MaSanPham'],
-            tenSanPham: data[i]['TenSanPham'],
-            gia: data[i]['Gia'],
-            hinhAnh: data[i]['HinhAnh'],
-            mauSac: data[i]['MauSac'],
-            kichThuoc: data[i]['KichThuoc']);
-        addProduct(product);
-      }
-    } catch (e) {
-      print(e);
-    }
-  }*/
   void deleteProduct(ProductInCart product) {
     products.remove(product);
   }
