@@ -34,7 +34,6 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
               color: Colors.black,
             ),
             onPressed: () {
-              // Xử lý khi người dùng nhấn vào nút tìm kiếm
             },
           ),
           const SizedBox(
@@ -46,7 +45,7 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
               color: Colors.black,
             ),
             onPressed: () {
-              // Xử lý khi người dùng nhấn vào nút thông báo
+
             },
           ),
         ],
@@ -58,6 +57,8 @@ class _PersonalInformationPageState extends State<PersonalInformationPage> {
             buildDetailRow('Số điện thoại:', '${widget.user.SoDienThoai}'),
             buildDetailRow('Email:', '${widget.user.Email}'),
             buildDetailRow('Password:', '${widget.user.MatKhau}'),
+             buildDetailRow('Address:', '${widget.user.DiaChi}'),
+            
             Divider(
               color: Colors.black,
               thickness: 2,

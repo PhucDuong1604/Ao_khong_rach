@@ -66,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
           Email: email,
           SoDienThoai: responseData['data']['SoDienThoai'] ?? "N/A",
           MatKhau: password,
+          DiaChi: responseData['data']['DiaChi'] ,
         );
         Cart cart = Cart(user: user);
         Navigator.push(

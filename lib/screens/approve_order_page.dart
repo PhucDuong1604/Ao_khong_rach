@@ -13,7 +13,7 @@ class ApproveOrderPage extends StatefulWidget {
 class _ApproveOrderPageState extends State<ApproveOrderPage> {
   List<Order> orders = [];
   bool isLoading = false;
-  String filterStatus = 'All'; // For filtering orders by status
+  String filterStatus = 'All'; 
 
   @override
   void initState() {
@@ -63,7 +63,7 @@ class _ApproveOrderPageState extends State<ApproveOrderPage> {
       );
 
       if (response.statusCode == 200) {
-        fetchOrders(); // Refresh the orders list
+        fetchOrders(); 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Order status updated successfully')),
         );
@@ -146,7 +146,6 @@ class _ApproveOrderPageState extends State<ApproveOrderPage> {
                             ),
                           ),
                           children: [
-                            // Order items
                             ...order.items.map((item) => ListTile(
                                   title: Text(item.tenSanPham),
                                   subtitle: Text(
@@ -154,7 +153,6 @@ class _ApproveOrderPageState extends State<ApproveOrderPage> {
                                   trailing: Text(
                                       '${item.SoLuong}x ₫${item.gia.toString()}'),
                                 )),
-                            // Action buttons
                             if (order.TrangThai == 'Pending')
                               Padding(
                                 padding: const EdgeInsets.all(8.0),

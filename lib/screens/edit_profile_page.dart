@@ -15,6 +15,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController nameController = new TextEditingController();
   final TextEditingController phoneController = new TextEditingController();
   final TextEditingController emailController = new TextEditingController();
+  final TextEditingController addressController = new TextEditingController();
 
 
   @override
@@ -22,6 +23,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
     nameController.text = widget.user.HoTen!;
     phoneController.text = widget.user.SoDienThoai!;
     emailController.text = widget.user.Email!;
+    addressController.text = widget.user.DiaChi!;
+    
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(253, 158, 158, 158),
@@ -58,6 +61,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
               BuildTextField(
                   textEditingController: emailController, labelText: "Email"),
+              const SizedBox(
+                height: 20,
+              ),
+              BuildTextField(
+                  textEditingController: addressController, labelText: "Address"),
               const SizedBox(
                 height: 20,
               ),
@@ -133,6 +141,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     user.HoTen = nameController.text;
     user.Email = emailController.text;
     user.SoDienThoai = phoneController.text;
+    user.DiaChi = addressController.text;
   
     return user;
   }

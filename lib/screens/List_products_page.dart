@@ -25,7 +25,7 @@ Future<List<Product>> fetchProducts() async {
           kichThuoc: item['KichThuoc'] ?? '',
           mauSac: item['MauSac'] ?? '',
           soLuongTon: item['SoLuongTon'],
-          maSanPham: '',
+          maSanPham: item['MaSanPham'],
           moTa: '',
           danhMuc: '',
           SoLuong: 0));

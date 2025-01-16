@@ -15,13 +15,13 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final TextEditingController confirmPasswordController =TextEditingController();
+
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
-
+ 
   @override
   void dispose() {
     emailController.dispose();
@@ -35,20 +35,19 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future<void> registerUser() async {
-    // URL API
+
     const String apiUrl = "http://localhost:8888/restful_api_php/api/khachhang/them.php";
 
-    // Dữ liệu đăng ký
     final Map<String, String> userData = {
-    //  "MaKhachHang": "",
       "HoTen": nameController.text,
       "Email": emailController.text,
       "MatKhau": passwordController.text,
       "SoDienThoai": phoneController.text,
+      "DiaChi": addressController.text,
+      
       "TrangThai": "HoatDong",
     };
 
-    // Gửi yêu cầu POST
     try {
       final response = await http.post(
         Uri.parse(apiUrl),
@@ -56,20 +55,15 @@ class _RegisterPageState extends State<RegisterPage> {
         body: jsonEncode(userData),
       );
 
-      // Kiểm tra phản hồi
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
 
         if (responseData['success'] == true) {
-          // Hiển thị thông báo thành công
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("Dang ky thanh cong!")),
           );
-
-          // Điều hướng quay lại trang đăng nhập
           Navigator.pop(context);
         } else {
-          // Hiển thị lỗi từ API
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text("Lỗi: ${responseData['message']}")),
           );
@@ -133,6 +127,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     BuildTextField(
                         textEditingController: emailController,
                         labelText: "Email"),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                     BuildTextField(
+                        textEditingController: addressController,
+                        labelText: "Address"),
                     const SizedBox(
                       height: 10,
                     ),
